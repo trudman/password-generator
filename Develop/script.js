@@ -2,7 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 console.log(generateBtn);
 
-var uppercaseCase = [
+var upperCase = [
   "A",
   "B",
   "C",
@@ -91,6 +91,14 @@ var special = [
 
 var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+function getRandInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandItem(items) {
+  return items[getRandInt(0, items.length - 1)];
+}
+
 function generatePassword() {
   var userInput = window.prompt("How long would you like your password to be?");
   var passwordLength = parseInt(userInput);
@@ -109,6 +117,43 @@ function generatePassword() {
   var wantsNumbers = confirm("Click OK to confirm using numbers.");
   var wantsLowerCaseCharacters = confirm("Click OK to confirm using lower case characters.");
   var wantsUpperCaseCharacters = confirm("Click OK to confirm using upper case characters.");
+
+  if (
+    wantsSpecialCharacters === false &&
+    wantsNumbers === false &&
+    wantsLowerCaseCharacters === false &&
+    wantsUpperCaseCharacters === false
+  ) {
+    alert("Must select at least one character type.");
+    return null;
+  }
+
+  var passwordOptions = [];
+
+  if (wantsSpecialCharacters === true) {
+    passwordOptions.push(special);
+  }
+
+  if (wantsNumbers === true) {
+    passwordOptions.push(numericCharacters);
+  }
+
+  if (wantsLowerCaseCharacters === true) {
+    passwordOptions.push(lowerCase);
+  }
+
+  if (wantsUpperCaseCharacters === true) {
+    passwordOptions.push(upperCase);
+  }
+
+  var completedPassword = "";
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randList = getRandItem(passwordOptions);
+    var randChar = getRandItem(randList);
+    completedPassword += randChar;
+  }
+  return completedPassword;
 }
 
 // Write password to the #password input
