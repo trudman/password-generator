@@ -16,7 +16,7 @@ To use this random password generator you will first select generate password wh
 
 [Link]https://trudman.github.io/password-generator/
 
-![Screenshot](develop/images/Screenshot%202022-11-10%20at%2010.28.02%20AM.png)
+![Screenshot](assets/images/Screenshot%202022-11-10%20at%2010.28.02%20AM.png)
 
 ## Credit
 
